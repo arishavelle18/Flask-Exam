@@ -13,15 +13,26 @@ def match(match_id):
         return "Invalid match id", 404
 
     start = time.time()
-    msg = "Match found" if (is_match(*MATCHES[match_id])) else "No match"
+    print(*MATCHES[match_id])
+    # exit(1)
+    msg = "Match found" if (is_match(*MATCHES[match_id])) else "No match"   
     end = time.time()
 
     return {"message": msg, "elapsedTime": end - start}, 200
 
 
 def is_match(fave_numbers_1, fave_numbers_2):
-    for number in fave_numbers_2:
-        if number not in fave_numbers_1:
-            return False
-
-    return True
+    matches = True
+    sequence_length = len(fave_numbers_1)
+    query_length = len(fave_numbers_2)
+    
+    for i in range(sequence_length - query_length + 1):
+        match = True
+        for j in range(query_length):
+            if fave_numbers_1[i + j] != fave_numbers_2[j]:
+                match = False
+                break
+        if match:
+            matches.append(i)
+    
+    return match
