@@ -22,7 +22,7 @@ def match(match_id):
 
 
 def is_match(fave_numbers_1, fave_numbers_2):
-    matches = True
+    matches = []
     sequence_length = len(fave_numbers_1)
     query_length = len(fave_numbers_2)
     
@@ -35,4 +35,4 @@ def is_match(fave_numbers_1, fave_numbers_2):
         if match:
             matches.append(i)
     
-    return match
+    return matches
